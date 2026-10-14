@@ -136,6 +136,9 @@ def evaluate(model,args,seed):
     kernel=cross_talk_kernel(model,base)
     for row in hist.values():
         row.update(kernel)
+        # Only one cross-kernel is sampled: at the terminal memory state.
+        # Its copy on earlier horizon rows is NOT an earlier-horizon measurement.
+        row['kernel_measured_at_rewrites'] = max(args.eval_horizons)
     return hist,time.perf_counter()-started
 
 
