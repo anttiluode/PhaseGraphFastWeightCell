@@ -1,0 +1,382 @@
+{
+  "name": "Gate 3 128-episode second-order vs first-order pilot",
+  "workflow": "https://github.com/anttiluode/PhaseGraphFastWeightCell/actions/runs/38599831181",
+  "seeds": [
+    41,
+    97,
+    127
+  ],
+  "episodes": 128,
+  "training_horizons": [
+    1,
+    4,
+    16,
+    64
+  ],
+  "eval_count": 64,
+  "payload_bytes": 48,
+  "topk": 8,
+  "per_seed": {
+    "41": {
+      "phase_meta": {
+        "parameter_count": 12867,
+        "horizons": {
+          "1": {
+            "mse": 0.20208746194839478,
+            "updated_slot_mse": 0.09070107340812683,
+            "untouched_drift_mse": 0.02176687680184841,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.2792361378669739,
+            "self_jacobian_frobenius": 42.13024139404297
+          },
+          "4": {
+            "mse": 0.17297302186489105,
+            "updated_slot_mse": 0.1465318351984024,
+            "untouched_drift_mse": 0.021464338526129723,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.2792361378669739,
+            "self_jacobian_frobenius": 42.13024139404297
+          },
+          "16": {
+            "mse": 0.1669827699661255,
+            "updated_slot_mse": 0.1262402981519699,
+            "untouched_drift_mse": 0.018333494663238525,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.2792361378669739,
+            "self_jacobian_frobenius": 42.13024139404297
+          },
+          "64": {
+            "mse": 0.19621141254901886,
+            "updated_slot_mse": 0.16641156375408173,
+            "untouched_drift_mse": 0.01882958970963955,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.2792361378669739,
+            "self_jacobian_frobenius": 42.13024139404297
+          }
+        }
+      },
+      "phase_first_order": {
+        "parameter_count": 12867,
+        "horizons": {
+          "1": {
+            "mse": 0.17646630108356476,
+            "updated_slot_mse": 0.16656047105789185,
+            "untouched_drift_mse": 0.016135752201080322,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.3628960847854614,
+            "self_jacobian_frobenius": 13.392431259155273
+          },
+          "4": {
+            "mse": 0.20897264778614044,
+            "updated_slot_mse": 0.19668477773666382,
+            "untouched_drift_mse": 0.01825549267232418,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.3628960847854614,
+            "self_jacobian_frobenius": 13.392431259155273
+          },
+          "16": {
+            "mse": 0.21631896495819092,
+            "updated_slot_mse": 0.17541097104549408,
+            "untouched_drift_mse": 0.01417816337198019,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.3628960847854614,
+            "self_jacobian_frobenius": 13.392431259155273
+          },
+          "64": {
+            "mse": 0.23438416421413422,
+            "updated_slot_mse": 0.23269586265087128,
+            "untouched_drift_mse": 0.011903083883225918,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.3628960847854614,
+            "self_jacobian_frobenius": 13.392431259155273
+          }
+        }
+      }
+    },
+    "97": {
+      "phase_meta": {
+        "parameter_count": 12867,
+        "horizons": {
+          "1": {
+            "mse": 0.21352438628673553,
+            "updated_slot_mse": 0.13083858788013458,
+            "untouched_drift_mse": 0.024345846846699715,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.363165020942688,
+            "self_jacobian_frobenius": 32.47298812866211
+          },
+          "4": {
+            "mse": 0.18971268832683563,
+            "updated_slot_mse": 0.1552385836839676,
+            "untouched_drift_mse": 0.024750687181949615,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.363165020942688,
+            "self_jacobian_frobenius": 32.47298812866211
+          },
+          "16": {
+            "mse": 0.20422901213169098,
+            "updated_slot_mse": 0.15028128027915955,
+            "untouched_drift_mse": 0.02444351837038994,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.363165020942688,
+            "self_jacobian_frobenius": 32.47298812866211
+          },
+          "64": {
+            "mse": 0.2155834287405014,
+            "updated_slot_mse": 0.14491458237171173,
+            "untouched_drift_mse": 0.02599077858030796,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.363165020942688,
+            "self_jacobian_frobenius": 32.47298812866211
+          }
+        }
+      },
+      "phase_first_order": {
+        "parameter_count": 12867,
+        "horizons": {
+          "1": {
+            "mse": 0.20400185883045197,
+            "updated_slot_mse": 0.159279003739357,
+            "untouched_drift_mse": 0.01605215296149254,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.43442437052726746,
+            "self_jacobian_frobenius": 9.309552192687988
+          },
+          "4": {
+            "mse": 0.21286006271839142,
+            "updated_slot_mse": 0.18452705442905426,
+            "untouched_drift_mse": 0.013913889415562153,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.43442437052726746,
+            "self_jacobian_frobenius": 9.309552192687988
+          },
+          "16": {
+            "mse": 0.24274234473705292,
+            "updated_slot_mse": 0.17726898193359375,
+            "untouched_drift_mse": 0.014948755502700806,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.43442437052726746,
+            "self_jacobian_frobenius": 9.309552192687988
+          },
+          "64": {
+            "mse": 0.24494735896587372,
+            "updated_slot_mse": 0.20861850678920746,
+            "untouched_drift_mse": 0.012671418488025665,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.43442437052726746,
+            "self_jacobian_frobenius": 9.309552192687988
+          }
+        }
+      }
+    },
+    "127": {
+      "phase_meta": {
+        "parameter_count": 12867,
+        "horizons": {
+          "1": {
+            "mse": 0.19973228871822357,
+            "updated_slot_mse": 0.10445152968168259,
+            "untouched_drift_mse": 0.017361514270305634,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.262864351272583,
+            "self_jacobian_frobenius": 34.935302734375
+          },
+          "4": {
+            "mse": 0.17758651077747345,
+            "updated_slot_mse": 0.16230131685733795,
+            "untouched_drift_mse": 0.015719009563326836,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.262864351272583,
+            "self_jacobian_frobenius": 34.935302734375
+          },
+          "16": {
+            "mse": 0.1800469309091568,
+            "updated_slot_mse": 0.12119865417480469,
+            "untouched_drift_mse": 0.017548324540257454,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.262864351272583,
+            "self_jacobian_frobenius": 34.935302734375
+          },
+          "64": {
+            "mse": 0.22420136630535126,
+            "updated_slot_mse": 0.16185738146305084,
+            "untouched_drift_mse": 0.017539415508508682,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.262864351272583,
+            "self_jacobian_frobenius": 34.935302734375
+          }
+        }
+      },
+      "phase_first_order": {
+        "parameter_count": 12867,
+        "horizons": {
+          "1": {
+            "mse": 0.18298035860061646,
+            "updated_slot_mse": 0.18873189389705658,
+            "untouched_drift_mse": 0.01664736121892929,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.3570016622543335,
+            "self_jacobian_frobenius": 12.504190444946289
+          },
+          "4": {
+            "mse": 0.20588339865207672,
+            "updated_slot_mse": 0.2291194349527359,
+            "untouched_drift_mse": 0.014956126920878887,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.3570016622543335,
+            "self_jacobian_frobenius": 12.504190444946289
+          },
+          "16": {
+            "mse": 0.22187910974025726,
+            "updated_slot_mse": 0.1722664088010788,
+            "untouched_drift_mse": 0.014883254654705524,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.3570016622543335,
+            "self_jacobian_frobenius": 12.504190444946289
+          },
+          "64": {
+            "mse": 0.23664669692516327,
+            "updated_slot_mse": 0.20472794771194458,
+            "untouched_drift_mse": 0.010906937532126904,
+            "changed_byte_fraction_cumulative": 0.1666666716337204,
+            "sham_byte_fraction": 0.1666666716337204,
+            "state_bytes": 48,
+            "offdiag_cross_kernel": 0.3570016622543335,
+            "self_jacobian_frobenius": 12.504190444946289
+          }
+        }
+      }
+    }
+  },
+  "mean": {
+    "phase_meta": {
+      "1": {
+        "mse": 0.205114712,
+        "updated_slot_mse": 0.10866373,
+        "untouched_drift_mse": 0.021158079,
+        "changed_byte_fraction_cumulative": 0.166666672,
+        "sham_byte_fraction": 0.166666672,
+        "offdiag_cross_kernel": 0.30175517,
+        "self_jacobian_frobenius": 36.512844086
+      },
+      "4": {
+        "mse": 0.18009074,
+        "updated_slot_mse": 0.154690579,
+        "untouched_drift_mse": 0.020644678,
+        "changed_byte_fraction_cumulative": 0.166666672,
+        "sham_byte_fraction": 0.166666672,
+        "offdiag_cross_kernel": 0.30175517,
+        "self_jacobian_frobenius": 36.512844086
+      },
+      "16": {
+        "mse": 0.183752904,
+        "updated_slot_mse": 0.132573411,
+        "untouched_drift_mse": 0.020108446,
+        "changed_byte_fraction_cumulative": 0.166666672,
+        "sham_byte_fraction": 0.166666672,
+        "offdiag_cross_kernel": 0.30175517,
+        "self_jacobian_frobenius": 36.512844086
+      },
+      "64": {
+        "mse": 0.211998736,
+        "updated_slot_mse": 0.157727843,
+        "untouched_drift_mse": 0.020786595,
+        "changed_byte_fraction_cumulative": 0.166666672,
+        "sham_byte_fraction": 0.166666672,
+        "offdiag_cross_kernel": 0.30175517,
+        "self_jacobian_frobenius": 36.512844086
+      }
+    },
+    "phase_first_order": {
+      "1": {
+        "mse": 0.187816173,
+        "updated_slot_mse": 0.17152379,
+        "untouched_drift_mse": 0.016278422,
+        "changed_byte_fraction_cumulative": 0.166666672,
+        "sham_byte_fraction": 0.166666672,
+        "offdiag_cross_kernel": 0.384774039,
+        "self_jacobian_frobenius": 11.735391299
+      },
+      "4": {
+        "mse": 0.209238703,
+        "updated_slot_mse": 0.203443756,
+        "untouched_drift_mse": 0.015708503,
+        "changed_byte_fraction_cumulative": 0.166666672,
+        "sham_byte_fraction": 0.166666672,
+        "offdiag_cross_kernel": 0.384774039,
+        "self_jacobian_frobenius": 11.735391299
+      },
+      "16": {
+        "mse": 0.22698014,
+        "updated_slot_mse": 0.174982121,
+        "untouched_drift_mse": 0.014670058,
+        "changed_byte_fraction_cumulative": 0.166666672,
+        "sham_byte_fraction": 0.166666672,
+        "offdiag_cross_kernel": 0.384774039,
+        "self_jacobian_frobenius": 11.735391299
+      },
+      "64": {
+        "mse": 0.238659407,
+        "updated_slot_mse": 0.215347439,
+        "untouched_drift_mse": 0.011827147,
+        "changed_byte_fraction_cumulative": 0.166666672,
+        "sham_byte_fraction": 0.166666672,
+        "offdiag_cross_kernel": 0.384774039,
+        "self_jacobian_frobenius": 11.735391299
+      }
+    }
+  },
+  "limits": [
+    "Only 128 episodes per seed; not a compute-matched comparison to user's 600-episode global-writer baselines",
+    "Cross-kernel is state-Jacobian overlap; cannot prove a globally orthogonal representation",
+    "All eight available bytes were changed on each recorded sham in this pilot, because the reader was still inaccurate",
+    "No evidence of an exact 64-rewrite memory, and inner autograd is expensive",
+    "This result is pre-line-search, fixed eight-bin gradient step, not a guaranteed error-decreasing update"
+  ]
+}
