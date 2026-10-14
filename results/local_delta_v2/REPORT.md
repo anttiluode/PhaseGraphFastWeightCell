@@ -52,3 +52,7 @@ For the spatial 896-byte experiment, use `--grid-size 8 --channels 8` in the hor
 ## What would validate the phase-graph hypothesis?
 
 Not only achieving near-zero MSE with known-key slots. Need a **trained**, fixed-byte, locally updated graph where one observation determines a useful future response under changing and possibly ambiguous query contexts; success must beat same-state, same-compute signed and vector cells and a strong keyed memory baseline. Report consistency across independent training seeds, many rewrites, nontrivial relatings between objects, and held-out interventions where graph paths/loop phases causally matter.
+
+## Horizon curriculum wiring result (not a training gate)
+
+The [32-episode, seed-41 CI smoke run](https://github.com/anttiluode/PhaseGraphFastWeightCell/actions/runs/38595666775) ran **all three** original 48-byte phase/signed/vector architectures through actual 1,4,16,64-rewrite training sequences with truncated BPTT. At **only 32 episodes** (rather than PR1's 600), the 64-rewrite MSE was **0.32030 phase**, **0.32144 signed**, **0.32034 vector**. These models were undertrained; the result verifies the new runner and explicitly does *not* demonstrate a performance improvement. The full-budget workflow is available under GitHub Actions as `Full 64-rewrite trained phase versus signed versus vector`, with separate seed jobs and an optional 8×8/8-channel configuration.
