@@ -1,0 +1,490 @@
+{
+  "name": "Gate2 sequential local phase delta pilot",
+  "date": "2026-10-14",
+  "run": "https://github.com/anttiluode/PhaseGraphFastWeightCell/actions/runs/38595055296",
+  "training": "none: analytical indexed loop control and PR1 frozen readers",
+  "seed_count": 3,
+  "held_out_cases_per_seed": 128,
+  "rewrites": 64,
+  "adjoint_cases_per_seed": 2,
+  "adjoint_rewrites": 4,
+  "means": {
+    "indexed_loop_72B": {
+      "1": {
+        "mse": 0.000020689741480358254,
+        "untouched_drift_mse": 0,
+        "sham_changed_byte_fraction": 0,
+        "changed_byte_fraction_mean": 0.041467737716933094
+      },
+      "4": {
+        "mse": 0.000020650887866698515,
+        "untouched_drift_mse": 0,
+        "sham_changed_byte_fraction": 0,
+        "changed_byte_fraction_mean": 0.04141348369774365
+      },
+      "16": {
+        "mse": 0.00002034376727048463,
+        "untouched_drift_mse": 0,
+        "sham_changed_byte_fraction": 0,
+        "changed_byte_fraction_mean": 0.041356374362581654
+      },
+      "64": {
+        "mse": 0.000020164052936403703,
+        "untouched_drift_mse": 0,
+        "sham_changed_byte_fraction": 0,
+        "changed_byte_fraction_mean": 0.0413433045185917
+      }
+    },
+    "indexed_loop_896B": {
+      "1": {
+        "mse": 0.000020689741480358254,
+        "untouched_drift_mse": 0,
+        "sham_changed_byte_fraction": 0,
+        "changed_byte_fraction_mean": 0.0033322289236821234
+      },
+      "4": {
+        "mse": 0.000020650887866698515,
+        "untouched_drift_mse": 0,
+        "sham_changed_byte_fraction": 0,
+        "changed_byte_fraction_mean": 0.0033278692668924728
+      },
+      "16": {
+        "mse": 0.00002034376727048463,
+        "untouched_drift_mse": 0,
+        "sham_changed_byte_fraction": 0,
+        "changed_byte_fraction_mean": 0.003323280129973826
+      },
+      "64": {
+        "mse": 0.000020164052936403703,
+        "untouched_drift_mse": 0,
+        "sham_changed_byte_fraction": 0,
+        "changed_byte_fraction_mean": 0.0033222298805059784
+      }
+    },
+    "orthogonal_delta_48B": {
+      "1": {
+        "mse": 0,
+        "untouched_drift_mse": 0,
+        "sham_changed_byte_fraction": 0,
+        "changed_byte_fraction_mean": 0.25
+      },
+      "4": {
+        "mse": 0,
+        "untouched_drift_mse": 0,
+        "sham_changed_byte_fraction": 0,
+        "changed_byte_fraction_mean": 0.25
+      },
+      "16": {
+        "mse": 0,
+        "untouched_drift_mse": 0,
+        "sham_changed_byte_fraction": 0,
+        "changed_byte_fraction_mean": 0.25
+      },
+      "64": {
+        "mse": 0,
+        "untouched_drift_mse": 0,
+        "sham_changed_byte_fraction": 0,
+        "changed_byte_fraction_mean": 0.25
+      }
+    }
+  },
+  "per_seed": [
+    {
+      "seed": 41,
+      "arms": {
+        "indexed_loop_72B": {
+          "horizons": {
+            "1": {
+              "mse": 0.00002062288149318192,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.04147678054869175,
+              "state_bytes": 72,
+              "skip_rewrite_mse": 0.15861912071704865
+            },
+            "4": {
+              "mse": 0.000020720335669466294,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.04141865085278239,
+              "state_bytes": 72,
+              "skip_rewrite_mse": 0.18338702619075775
+            },
+            "16": {
+              "mse": 0.000020639485228457488,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.04138683253212979,
+              "state_bytes": 72,
+              "skip_rewrite_mse": 0.16661764681339264
+            },
+            "64": {
+              "mse": 0.000019334745957166888,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.04136381820956273,
+              "state_bytes": 72,
+              "skip_rewrite_mse": 0.17308855056762695
+            }
+          },
+          "seconds": 0.06356492599999797
+        },
+        "indexed_loop_896B": {
+          "horizons": {
+            "1": {
+              "mse": 0.00002062288149318192,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.0033329555299133062,
+              "state_bytes": 896,
+              "skip_rewrite_mse": 0.15861912071704865
+            },
+            "4": {
+              "mse": 0.000020720335669466294,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.0033282844815403223,
+              "state_bytes": 896,
+              "skip_rewrite_mse": 0.18338702619075775
+            },
+            "16": {
+              "mse": 0.000020639485228457488,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.0033257276579541596,
+              "state_bytes": 896,
+              "skip_rewrite_mse": 0.16661764681339264
+            },
+            "64": {
+              "mse": 0.000019334745957166888,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.003323878314512879,
+              "state_bytes": 896,
+              "skip_rewrite_mse": 0.17308855056762695
+            }
+          },
+          "seconds": 0.07871486000000516
+        },
+        "orthogonal_delta_48B": {
+          "horizons": {
+            "1": {
+              "mse": 0,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.25,
+              "state_bytes": 48,
+              "skip_rewrite_mse": 0.15864163637161255
+            },
+            "4": {
+              "mse": 0,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.25,
+              "state_bytes": 48,
+              "skip_rewrite_mse": 0.1834932118654251
+            },
+            "16": {
+              "mse": 0,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.25,
+              "state_bytes": 48,
+              "skip_rewrite_mse": 0.166560098528862
+            },
+            "64": {
+              "mse": 0,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.25,
+              "state_bytes": 48,
+              "skip_rewrite_mse": 0.17302106320858002
+            }
+          },
+          "seconds": 0.014316648000004761
+        }
+      },
+      "adjoint": {
+        "reader_is_frozen": true,
+        "using_PR1_seed": 41,
+        "iterations_per_write": 2,
+        "topk_edges": 8,
+        "cases": 2,
+        "rewrites": 4,
+        "global_writer_final_mse": 0.2780313789844513,
+        "adjoint_final_mse": 0.2848173975944519,
+        "changed_fraction_vs_init": 0.3333333432674408,
+        "bytes": 48,
+        "seconds": 0.3012375590000005,
+        "caveat": "Frozen PR1 reader poorly trained on original benchmark. Success of one-step optimization cannot be extrapolated to 64 writes or learned spatial memory."
+      }
+    },
+    {
+      "seed": 97,
+      "arms": {
+        "indexed_loop_72B": {
+          "horizons": {
+            "1": {
+              "mse": 0.00002010655043704901,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.04144965298473835,
+              "state_bytes": 72,
+              "skip_rewrite_mse": 0.15950371325016022
+            },
+            "4": {
+              "mse": 0.00002079507066810038,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.041341145655938556,
+              "state_bytes": 72,
+              "skip_rewrite_mse": 0.15713107585906982
+            },
+            "16": {
+              "mse": 0.000019335935576236807,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.041324012569691,
+              "state_bytes": 72,
+              "skip_rewrite_mse": 0.1690981537103653
+            },
+            "64": {
+              "mse": 0.000020485873392317444,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.04130389658150388,
+              "state_bytes": 72,
+              "skip_rewrite_mse": 0.1647651493549347
+            }
+          },
+          "seconds": 0.06715098899999816
+        },
+        "indexed_loop_896B": {
+          "horizons": {
+            "1": {
+              "mse": 0.00002010655043704901,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.003330775711219758,
+              "state_bytes": 896,
+              "skip_rewrite_mse": 0.15950371325016022
+            },
+            "4": {
+              "mse": 0.00002079507066810038,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.003322056361607143,
+              "state_bytes": 896,
+              "skip_rewrite_mse": 0.15713107585906982
+            },
+            "16": {
+              "mse": 0.000019335935576236807,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.003320679632260611,
+              "state_bytes": 896,
+              "skip_rewrite_mse": 0.1690981537103653
+            },
+            "64": {
+              "mse": 0.000020485873392317444,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.003319063150921642,
+              "state_bytes": 896,
+              "skip_rewrite_mse": 0.1647651493549347
+            }
+          },
+          "seconds": 0.09872934199999861
+        },
+        "orthogonal_delta_48B": {
+          "horizons": {
+            "1": {
+              "mse": 0,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.25,
+              "state_bytes": 48,
+              "skip_rewrite_mse": 0.159390389919281
+            },
+            "4": {
+              "mse": 0,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.25,
+              "state_bytes": 48,
+              "skip_rewrite_mse": 0.1571800857782364
+            },
+            "16": {
+              "mse": 0,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.25,
+              "state_bytes": 48,
+              "skip_rewrite_mse": 0.16914916038513184
+            },
+            "64": {
+              "mse": 0,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.25,
+              "state_bytes": 48,
+              "skip_rewrite_mse": 0.1646825224161148
+            }
+          },
+          "seconds": 0.013923864999995317
+        }
+      },
+      "adjoint": {
+        "reader_is_frozen": true,
+        "using_PR1_seed": 97,
+        "iterations_per_write": 2,
+        "topk_edges": 8,
+        "cases": 2,
+        "rewrites": 4,
+        "global_writer_final_mse": 0.3632719814777374,
+        "adjoint_final_mse": 0.36372506618499756,
+        "changed_fraction_vs_init": 0.34375,
+        "bytes": 48,
+        "seconds": 0.29875482500000317,
+        "caveat": "Frozen PR1 reader poorly trained on original benchmark. Success of one-step optimization cannot be extrapolated to 64 writes or learned spatial memory."
+      }
+    },
+    {
+      "seed": 127,
+      "arms": {
+        "indexed_loop_72B": {
+          "horizons": {
+            "1": {
+              "mse": 0.000021339792510843836,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.041476779617369175,
+              "state_bytes": 72,
+              "skip_rewrite_mse": 0.1691596657037735
+            },
+            "4": {
+              "mse": 0.000020437257262528874,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.04148065458450999,
+              "state_bytes": 72,
+              "skip_rewrite_mse": 0.17566584050655365
+            },
+            "16": {
+              "mse": 0.00002105588100675959,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.04135827798592417,
+              "state_bytes": 72,
+              "skip_rewrite_mse": 0.17385780811309814
+            },
+            "64": {
+              "mse": 0.000020671539459726773,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.04136219876470851,
+              "state_bytes": 72,
+              "skip_rewrite_mse": 0.1682111620903015
+            }
+          },
+          "seconds": 0.06249214400000369
+        },
+        "indexed_loop_896B": {
+          "horizons": {
+            "1": {
+              "mse": 0.000021339792510843836,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.0033329555299133062,
+              "state_bytes": 896,
+              "skip_rewrite_mse": 0.1691596657037735
+            },
+            "4": {
+              "mse": 0.000020437257262528874,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.0033332669575299534,
+              "state_bytes": 896,
+              "skip_rewrite_mse": 0.17566584050655365
+            },
+            "16": {
+              "mse": 0.00002105588100675959,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.003323433099706706,
+              "state_bytes": 896,
+              "skip_rewrite_mse": 0.17385780811309814
+            },
+            "64": {
+              "mse": 0.000020671539459726773,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.0033237481760834135,
+              "state_bytes": 896,
+              "skip_rewrite_mse": 0.1682111620903015
+            }
+          },
+          "seconds": 0.07837597799999685
+        },
+        "orthogonal_delta_48B": {
+          "horizons": {
+            "1": {
+              "mse": 0,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.25,
+              "state_bytes": 48,
+              "skip_rewrite_mse": 0.1690557599067688
+            },
+            "4": {
+              "mse": 0,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.25,
+              "state_bytes": 48,
+              "skip_rewrite_mse": 0.17568840086460114
+            },
+            "16": {
+              "mse": 0,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.25,
+              "state_bytes": 48,
+              "skip_rewrite_mse": 0.17391979694366455
+            },
+            "64": {
+              "mse": 0,
+              "untouched_drift_mse": 0,
+              "sham_changed_byte_fraction": 0,
+              "changed_byte_fraction_mean": 0.25,
+              "state_bytes": 48,
+              "skip_rewrite_mse": 0.16806469857692719
+            }
+          },
+          "seconds": 0.014028971000001889
+        }
+      },
+      "adjoint": {
+        "reader_is_frozen": true,
+        "using_PR1_seed": 127,
+        "iterations_per_write": 2,
+        "topk_edges": 8,
+        "cases": 2,
+        "rewrites": 4,
+        "global_writer_final_mse": 0.3154684007167816,
+        "adjoint_final_mse": 0.3105398714542389,
+        "changed_fraction_vs_init": 0.3541666567325592,
+        "bytes": 48,
+        "seconds": 0.30520760800000346,
+        "caveat": "Frozen PR1 reader poorly trained on original benchmark. Success of one-step optimization cannot be extrapolated to 64 writes or learned spatial memory."
+      }
+    }
+  ],
+  "limits": [
+    "Loop control uses exact privileged keys/known face addresses, no learned graph policy",
+    "Delta baseline stores four 3-vector float32 values in 48 bytes, can retrieve exactly",
+    "Adjoint pilot has only two examples per trained seed and does not demonstrate a 64-rewrite learned memory improvement",
+    "Loop memory uses 12 useful phase locations; 72B or 896B is not a compression advantage",
+    "No exact claim of compensating loop geometry in the learned GraphNN architecture"
+  ]
+}
