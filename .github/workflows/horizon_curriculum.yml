@@ -1,0 +1,41 @@
+name: Horizon curriculum smoke experiment
+
+on:
+  push:
+    paths:
+      - 'phasegraph/horizon_train.py'
+      - 'tests/test_horizon.py'
+      - '.github/workflows/horizon_curriculum.yml'
+  pull_request:
+    paths:
+      - 'phasegraph/horizon_train.py'
+      - 'tests/test_horizon.py'
+      - '.github/workflows/horizon_curriculum.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  horizon-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PyTorch CPU and pytest
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install pytest
+      - run: python -m pytest -q tests/test_horizon.py
+      - name: Exercise full 64-step curriculum on same-width phase, signed, vector
+        run: |
+          python -u -m phasegraph.horizon_train --steps 32 --seeds 41 --kinds phase signed vector --train-horizons 1 4 16 64 --eval-horizons 1 4 16 64 --batch-size 12 --eval-count 32 --width 64 --segment 8 --output runs/horizon_smoke
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: horizon-matched-smoke
+          path: runs/horizon_smoke/
+          if-no-files-found: warn
