@@ -34,6 +34,26 @@ already delivered Gemini's proposed general memory advantage.
 [Full results and interpretation](results/sequential_v1/REPORT.md) ·
 [Exact scores](results/sequential_v1/summary.json)
 
+## Gate 2: error-driven writes and the horizon trap (October 14)
+
+The original learned 48-byte phase/signed/vector models failed long-horizon key-value recall, and the phase cell was trained only to 16 rewrites before its 64-rewrite test. Gate 2 tests three separate possibilities without changing the original PR #1 code or results:
+
+- **Generic sparse adjoint phase writer**: wraps a frozen phase graph reader and computes `J(query,state)^T (prediction-target)` using PyTorch autograd. A discrete backtracking line search changes at most `topk × iterations` phase bytes and penalizes changes to other readouts. This is a *slower*, error-driven online optimization, not a fused fast-weight RNN or a trained new reader. A repeated input is a no-op only if the current prediction is accurate enough.
+- **Indexed plaquette-delta positive control**: uses exact known keys and local closed-loop phase measurements. After 64 rewrites it obtains **0.0000202 MSE**, **0% sham-write byte changes**, and **0 unintended readout drift**, for both a 72-byte and an 896-byte graph. It is equivalent to an indexed quantized table: only 12 scalar bytes carry user data. The 48-byte float32 exact-key delta baseline remains better (**0 MSE**). This proves local phase updates *can* survive many rewrites, not that a learned graph has figured out how to do so.
+- **Horizon-matched learned training**: a new truncated-BPTT training runner samples histories of 1,4,16,64 rewrites and trains the original phase, signed, and vector architectures with intermediate losses. It lets us test whether the original negative result came from extrapolating 16→64. No full-budget performance claim is made until those runs are finished and evaluated.
+
+On a tiny **two-stream-per-seed**, four-rewrite frozen-reader diagnostic, the generic adjoint wrapper produced mixed outcomes (PR1 final MSE → adjoint: seed 41 **0.2780→0.2848**, seed 97 **0.3633→0.3637**, seed 127 **0.3155→0.3105**). Thus it **has not fixed** the originally weak learned readout.
+
+[Full Gate 2 analysis](results/local_delta_v2/REPORT.md) · [three-seed measured receipts](results/local_delta_v2/pilot.json) · [successful 64-rewrite workflow](https://github.com/anttiluode/PhaseGraphFastWeightCell/actions/runs/38595055296)
+
+```bash
+python -m pytest -q
+python -m phasegraph.local_delta_benchmark --seeds 41 97 127 --output runs/local_delta/summary.json
+python -m phasegraph.horizon_train --steps 600 --seeds 41 97 127 --train-horizons 1 4 16 64 --segment 8 --output runs/horizon_matched
+```
+
+A 4×4 lattice with two channels already contains 18 face cycles; merely increasing state from 48 to 896 bytes does not prove those cycles store useful memories. The original 85% sham-rewrite statistic was measured in a **different model, GraphNN**, not in this cell. The next actual learned test must train a reader that supports selective error-driven writes over many steps, under matched key access, state bytes, parameter counts and probe compute.
+
 ## Install and run
 
 Python 3.10+ and PyTorch 2.5+; CPU is verified. CUDA is selectable with a

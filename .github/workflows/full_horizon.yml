@@ -1,0 +1,47 @@
+name: Full 64-rewrite trained phase versus signed versus vector
+
+on:
+  workflow_dispatch:
+    inputs:
+      steps:
+        description: "Training episodes per seed and architecture"
+        required: true
+        type: number
+        default: 600
+      grid_size:
+        description: "Graph side length: 4 (48B with 2ch) or 8 (896B with 8ch)"
+        required: true
+        type: number
+        default: 4
+      channels:
+        description: "Stored edge channels"
+        required: true
+        type: number
+        default: 2
+
+permissions:
+  contents: read
+
+jobs:
+  trained-horizon:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        seed: [41, 97, 127]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Train true 1-64 horizon matched models
+        run: |
+          python -u -m phasegraph.horizon_train --steps ${{ inputs.steps }} --seeds ${{ matrix.seed }} --kinds phase signed vector --train-horizons 1 4 16 64 --eval-horizons 1 4 16 64 --grid-size ${{ inputs.grid_size }} --channels ${{ inputs.channels }} --batch-size 32 --eval-count 128 --segment 8 --output runs/horizon_full
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: horizon-${{ inputs.grid_size }}x${{ inputs.grid_size }}-seed${{ matrix.seed }}
+          path: runs/horizon_full/
+          if-no-files-found: warn

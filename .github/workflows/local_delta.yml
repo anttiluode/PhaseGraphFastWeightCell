@@ -1,0 +1,45 @@
+name: Gate 2 local delta verification
+
+on:
+  push:
+    paths:
+      - 'phasegraph/delta.py'
+      - 'phasegraph/local_delta_benchmark.py'
+      - 'tests/test_delta.py'
+      - '.github/workflows/local_delta.yml'
+  pull_request:
+    paths:
+      - 'phasegraph/delta.py'
+      - 'phasegraph/local_delta_benchmark.py'
+      - 'tests/test_delta.py'
+      - '.github/workflows/local_delta.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  delta-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU Torch and pytest
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install pytest
+      - name: Gate 2 unit tests and old controls
+        run: python -m pytest -q
+      - name: Full 1-64 step long-horizon known-key control; adjoint frozen-reader diagnostic
+        run: |
+          python -u -m phasegraph.local_delta_benchmark --seeds 41 97 127 --eval-count 128 --horizons 1 4 16 64 --adjoint-cases 2 --adjoint-rewrites 4 --adjoint-iterations 2 --output runs/local_delta/summary.json
+      - name: Save complete measured receipts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: local-delta-gate2
+          path: runs/local_delta/summary.json
+          if-no-files-found: warn
