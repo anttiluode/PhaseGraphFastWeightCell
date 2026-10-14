@@ -34,6 +34,31 @@ already delivered Gemini's proposed general memory advantage.
 [Full results and interpretation](results/sequential_v1/REPORT.md) ·
 [Exact scores](results/sequential_v1/summary.json)
 
+## New: Gate 3 — reader trained through its own gradient write (experimental)
+
+The completed **600-episode, three-seed CUDA horizon-matched result** is now committed under [`results/horizon_matched`](results/horizon_matched). After 64 rewrites, mean MSE fell to **0.119708 phase**, **0.129821 signed-real** and **0.293230 vector**. The original 48-byte phase experiment had **0.303904** MSE after 64 rewrites when only trained through 16. This is evidence that the original learned graph *can* improve substantially through long-horizon training, but the new training also involved about 2,100 optimizer updates, not just 600. Phase beat signed on two of three seeds; no general phase superiority is established.
+
+In [`phasegraph/meta_ttt.py`](phasegraph/meta_ttt.py), the independent MLP **writer is removed**. The persistent state is still **48 physical uint8 bytes** (or 896 for an 8×8, 8-channel configuration). Instead, each observation produces a prediction `R_theta(phase,key)`; the reader's **state error Jacobian** supplies the update, quantized every step:
+
+```
+e = R_theta(state, key) - new_value
+direction = d/dstate mean(e**2)
+state_next = Q_uint8(state - eta * topk(direction / RMS(direction)))
+```
+
+**Reader-only parameters are meta-trained through this operation** using higher-order `create_graph=True` derivatives, eight-step truncated BPTT and multiple rewrite horizons. We compare `phase_meta`, the numerically identical *first-order stop-Jacobian-gradient* control `phase_first_order`, `signed_meta` and `vector_meta`. Default `topk=8`: only eight physical edge bytes can be changed per observation (not the earlier dense writer's global update). Exact no-op is guaranteed for a currently accurate observation, **not** for every repeat when the readout still has nonzero error.
+
+The [meta-training protocol](docs/META_TTT_PROTOCOL.md), [128-episode pilot](results/meta_ttt/pilot128.json) and [completed 600-episode three-seed results](results/meta_ttt/full600.json) are provided. **The full performance gate failed:** after 64 rewrites, higher-order meta-gradient gets **0.185918 MSE** versus **0.192249** for its first-order control, but the earlier trained global phase writer reaches **0.119708**. Worse, higher-order meta-learning suffers **0.8511 MSE after just one rewrite**, compared with **0.0912** for first-order. The normalized cross-kernel improved but actual untouched-key drift got worse. The learned reader does not become idempotent: repeat submissions still modify all eight eligible bytes. [Failure analysis and scientific implications](results/meta_ttt/REPORT.md). Every inner write needs autograd, so compact persistent state **does not** imply computational speed.
+
+**Run on your RTX 3060:**
+
+```bat
+python3.13 -m pytest -q tests/test_meta_ttt.py
+python3.13 -m phasegraph.meta_train --steps 600 --seeds 41 97 127 --arms phase_meta phase_first_order signed_meta vector_meta --train-horizons 1 4 16 64 --eval-horizons 1 4 16 64 --segment 8 --device cuda --batch-size 16 --output runs/meta_ttt
+```
+
+This learns *query-sensitive gradient writes*, not the exact keyed loop memory used as a Gate 2 positive control. It still receives **explicit one-hot keys** and targets, so the 48-byte exact orthogonal-key delta matrix remains the appropriate strong baseline.
+
 ## Gate 2: error-driven writes and the horizon trap (October 14)
 
 The original learned 48-byte phase/signed/vector models failed long-horizon key-value recall, and the phase cell was trained only to 16 rewrites before its 64-rewrite test. Gate 2 tests three separate possibilities without changing the original PR #1 code or results:

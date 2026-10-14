@@ -1,0 +1,81 @@
+name: Meta-trained phase Jacobian writer
+
+on:
+  push:
+    paths:
+      - "phasegraph/meta_ttt.py"
+      - "phasegraph/meta_train.py"
+      - "tests/test_meta_ttt.py"
+      - ".github/workflows/meta_ttt.yml"
+  pull_request:
+    paths:
+      - "phasegraph/meta_ttt.py"
+      - "phasegraph/meta_train.py"
+      - "tests/test_meta_ttt.py"
+      - ".github/workflows/meta_ttt.yml"
+  workflow_dispatch:
+    inputs:
+      steps:
+        description: "Training episodes, each with truncated BPTT segments"
+        required: true
+        type: number
+        default: 600
+      batch_size:
+        description: "Training batch size"
+        required: true
+        type: number
+        default: 8
+
+permissions:
+  contents: read
+
+jobs:
+  meta-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install CPU PyTorch and pytest
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install pytest
+      - name: Test second-order meta differentiability and physical uint8 state
+        run: python -m pytest -q tests/test_meta_ttt.py
+      - name: Small three-way meta training smoke (not evidence of learning)
+        run: |
+          python -u -m phasegraph.meta_train --steps 8 --seeds 41 --arms phase_meta phase_first_order signed_meta vector_meta --train-horizons 1 4 16 --eval-horizons 1 4 16 --batch-size 4 --eval-count 8 --segment 4 --width 32 --kernel-cases 2 --output runs/meta_smoke
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: meta-ttt-smoke
+          path: runs/meta_smoke/
+          if-no-files-found: warn
+
+  full-dispatch:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        seed: [41, 97, 127]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install pytest
+      - run: python -m pytest -q tests/test_meta_ttt.py
+      - name: Train reader through adjoint for 1/4/16/64-step streams
+        run: |
+          python -u -m phasegraph.meta_train --steps ${{ inputs.steps }} --seeds ${{ matrix.seed }} --arms phase_meta phase_first_order signed_meta vector_meta --batch-size ${{ inputs.batch_size }} --train-horizons 1 4 16 64 --eval-horizons 1 4 16 64 --segment 8 --eval-count 128 --output runs/meta_full
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: meta-ttt-seed-${{ matrix.seed }}
+          path: runs/meta_full/
+          if-no-files-found: warn
