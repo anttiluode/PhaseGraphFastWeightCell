@@ -7,7 +7,7 @@ The old independent MLP writer is REMOVED entirely: nn.Identity() carries
 no weights. Forward inner-loop writing is a gradient descent step on the
 reader's prediction error, quantized after every observation.
 
-'s econd_order' (second_order=True) differentiates THROUGH J^T e;
+'second_order' (second_order=True) differentiates THROUGH J^T e;
 first_order=False is a stop-gradient-control where the same numerical
 inner updates are made without differentiating their derivative.
 """
@@ -71,7 +71,7 @@ class MetaDeltaReader(nn.Module):
         per_case = residual.square().mean(-1)
         gradient = torch.autograd.grad(
             per_case.sum(), work, create_graph=self.training and self.second_order,
-            retain_graph=self.training and self.second_order)[0]
+            retain_graph=self.training)[0]
         flat = gradient.flatten(1)
         # Scale by detached RMS so the update has comparable size across
         # learned reader parameterizations; this is NOT natural gradient.
