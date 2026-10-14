@@ -32,7 +32,7 @@ class MetaDeltaReader(nn.Module):
     def __init__(self, *, slots: int = 4, value_size: int = 3,
                  grid_size: int = 4, channels: int = 2, width: int = 64,
                  transport_steps: int = 4, kind: str = "phase",
-                 step_bins: float = 8., topk: int | None = None,
+                 step_bins: float = 8., topk: int | None = 8,
                  tolerance: float = .002, second_order: bool = True):
         super().__init__()
         if type(slots) is not int or slots < 2 or type(value_size) is not int or value_size < 1:
