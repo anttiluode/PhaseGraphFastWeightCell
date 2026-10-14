@@ -1,0 +1,39 @@
+name: Meta reader 128-episode experimental pilot
+
+on:
+  push:
+    branches: ["gate3-meta-train-adjoint-reader"]
+    paths: [".github/workflows/meta_pilot.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  meta-seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    strategy:
+      fail-fast: false
+      matrix:
+        seed: [41, 97, 127]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU scientific runtime
+        run: |
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install pytest
+      - run: python -m pytest -q tests/test_meta_ttt.py
+      - name: Train phase reader with and without higher order differentiable writes
+        run: |
+          python -u -m phasegraph.meta_train --steps 128 --seeds ${{ matrix.seed }} --arms phase_meta phase_first_order --train-horizons 1 4 16 64 --eval-horizons 1 4 16 64 --segment 8 --batch-size 8 --eval-count 64 --topk 8 --output runs/meta_pilot
+      - name: Preserve data and checkpoints
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: meta-reader-pilot-seed-${{ matrix.seed }}
+          path: runs/meta_pilot/
+          if-no-files-found: warn
