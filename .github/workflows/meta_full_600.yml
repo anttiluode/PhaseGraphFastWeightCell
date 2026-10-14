@@ -1,0 +1,33 @@
+name: Gate 3 full phase meta versus first-order comparison
+on:
+  push:
+    branches: ["gate3-meta-train-adjoint-reader"]
+    paths: [".github/workflows/meta_full_600.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  meta-full:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    strategy:
+      fail-fast: false
+      matrix:
+        seed: [41, 97, 127]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install pytest
+      - run: python -m pytest -q tests/test_meta_ttt.py
+      - name: Genuine 600-episode reader meta-learning vs stop-gradient control
+        run: |
+          python -u -m phasegraph.meta_train --steps 600 --seeds ${{ matrix.seed }} --arms phase_meta phase_first_order --train-horizons 1 4 16 64 --eval-horizons 1 4 16 64 --segment 8 --batch-size 8 --eval-count 128 --topk 8 --output runs/meta_full600
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: full-meta-seed-${{ matrix.seed }}
+          path: runs/meta_full600/
+          if-no-files-found: warn
