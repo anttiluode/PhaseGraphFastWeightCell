@@ -1,0 +1,83 @@
+{
+  "seed": 97,
+  "kind": "signed",
+  "train_seconds": 55.82991000000038,
+  "eval_seconds": 0.39163579999876674,
+  "training_updates": 2120,
+  "training_trace": [
+    {
+      "step": 1,
+      "horizon": 4,
+      "loss": 0.33432134985923767,
+      "optimizer_updates": 1
+    },
+    {
+      "step": 120,
+      "horizon": 1,
+      "loss": 0.309852659702301,
+      "optimizer_updates": 420
+    },
+    {
+      "step": 240,
+      "horizon": 1,
+      "loss": 0.29807257652282715,
+      "optimizer_updates": 898
+    },
+    {
+      "step": 360,
+      "horizon": 4,
+      "loss": 0.2691742181777954,
+      "optimizer_updates": 1268
+    },
+    {
+      "step": 480,
+      "horizon": 4,
+      "loss": 0.16745547950267792,
+      "optimizer_updates": 1722
+    },
+    {
+      "step": 600,
+      "horizon": 64,
+      "loss": 0.11515049636363983,
+      "optimizer_updates": 2120
+    }
+  ],
+  "horizons": {
+    "1": {
+      "mse": 0.09056983888149261,
+      "updated_slot_mse": 0.09817050397396088,
+      "untouched_drift_mse": 0.009440009482204914,
+      "shuffled_mse": 0.579437255859375,
+      "blank_mse": 1.742897868156433,
+      "skip_all_rewrites_mse": 0.20705513656139374
+    },
+    "4": {
+      "mse": 0.11001428216695786,
+      "updated_slot_mse": 0.09261675924062729,
+      "untouched_drift_mse": 0.008854461601004004,
+      "shuffled_mse": 0.614193856716156,
+      "blank_mse": 1.7476441860198975,
+      "skip_all_rewrites_mse": 0.42704319953918457
+    },
+    "16": {
+      "mse": 0.12945866584777832,
+      "updated_slot_mse": 0.10688243806362152,
+      "untouched_drift_mse": 0.009035782015416771,
+      "shuffled_mse": 0.531054675579071,
+      "blank_mse": 1.6806682348251343,
+      "skip_all_rewrites_mse": 0.561372697353363
+    },
+    "64": {
+      "mse": 0.1423671543598175,
+      "updated_slot_mse": 0.1055915579199791,
+      "untouched_drift_mse": 0.009270432099583559,
+      "shuffled_mse": 0.5686795711517334,
+      "blank_mse": 1.7154725790023804,
+      "skip_all_rewrites_mse": 0.5900732278823853
+    }
+  },
+  "state_bytes": 48,
+  "parameter_bytes": 103052,
+  "parameter_count": 25763,
+  "limits": "Horizon-matched ORIGINAL global writer, not local delta. Truncated BPTT and multiple optimizer steps per episode; original 600-step baseline not compute-matched."
+}

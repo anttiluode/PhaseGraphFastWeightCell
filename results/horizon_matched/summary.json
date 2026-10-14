@@ -1,0 +1,790 @@
+{
+  "protocol": "frozen-error-analysis follow-up; original global writer, full-horizon training",
+  "args": {
+    "steps": 600,
+    "seeds": [
+      41,
+      97,
+      127
+    ],
+    "kinds": [
+      "phase",
+      "signed",
+      "vector"
+    ],
+    "batch_size": 32,
+    "eval_count": 128,
+    "train_horizons": [
+      1,
+      4,
+      16,
+      64
+    ],
+    "eval_horizons": [
+      1,
+      4,
+      16,
+      64
+    ],
+    "segment": 8,
+    "slots": 4,
+    "value_size": 3,
+    "grid_size": 4,
+    "channels": 2,
+    "width": 64,
+    "transport_steps": 4,
+    "lr": 0.003,
+    "device": "cuda",
+    "threads": 2,
+    "output": "runs\\horizon_matched"
+  },
+  "runs": [
+    {
+      "seed": 41,
+      "kind": "phase",
+      "train_seconds": 58.26997439999832,
+      "eval_seconds": 0.8766648999990139,
+      "training_updates": 2126,
+      "training_trace": [
+        {
+          "step": 1,
+          "horizon": 4,
+          "loss": 0.32872524857521057,
+          "optimizer_updates": 1
+        },
+        {
+          "step": 120,
+          "horizon": 16,
+          "loss": 0.33473679423332214,
+          "optimizer_updates": 434
+        },
+        {
+          "step": 240,
+          "horizon": 4,
+          "loss": 0.34838899970054626,
+          "optimizer_updates": 914
+        },
+        {
+          "step": 360,
+          "horizon": 1,
+          "loss": 0.2864137887954712,
+          "optimizer_updates": 1326
+        },
+        {
+          "step": 480,
+          "horizon": 64,
+          "loss": 0.2543327510356903,
+          "optimizer_updates": 1688
+        },
+        {
+          "step": 600,
+          "horizon": 16,
+          "loss": 0.1639007180929184,
+          "optimizer_updates": 2126
+        }
+      ],
+      "horizons": {
+        "1": {
+          "mse": 0.16500486433506012,
+          "updated_slot_mse": 0.13780461251735687,
+          "untouched_drift_mse": 0.0033762918319553137,
+          "shuffled_mse": 0.5051059722900391,
+          "blank_mse": 1.0194430351257324,
+          "skip_all_rewrites_mse": 0.24529075622558594
+        },
+        "4": {
+          "mse": 0.15960630774497986,
+          "updated_slot_mse": 0.15768194198608398,
+          "untouched_drift_mse": 0.0032666276092641056,
+          "shuffled_mse": 0.49523600935935974,
+          "blank_mse": 0.9805528521537781,
+          "skip_all_rewrites_mse": 0.3692205846309662
+        },
+        "16": {
+          "mse": 0.1754808872938156,
+          "updated_slot_mse": 0.15210315585136414,
+          "untouched_drift_mse": 0.0033412952470825985,
+          "shuffled_mse": 0.5001125931739807,
+          "blank_mse": 1.0110793113708496,
+          "skip_all_rewrites_mse": 0.4902026057243347
+        },
+        "64": {
+          "mse": 0.17613744735717773,
+          "updated_slot_mse": 0.16533319652080536,
+          "untouched_drift_mse": 0.0034074771938321646,
+          "shuffled_mse": 0.4931175112724304,
+          "blank_mse": 1.0072954893112183,
+          "skip_all_rewrites_mse": 0.5017131567001343
+        }
+      },
+      "state_bytes": 48,
+      "parameter_bytes": 103052,
+      "parameter_count": 25763,
+      "limits": "Horizon-matched ORIGINAL global writer, not local delta. Truncated BPTT and multiple optimizer steps per episode; original 600-step baseline not compute-matched."
+    },
+    {
+      "seed": 41,
+      "kind": "signed",
+      "train_seconds": 54.76209739999831,
+      "eval_seconds": 0.3333034999996016,
+      "training_updates": 2126,
+      "training_trace": [
+        {
+          "step": 1,
+          "horizon": 4,
+          "loss": 0.3286818861961365,
+          "optimizer_updates": 1
+        },
+        {
+          "step": 120,
+          "horizon": 16,
+          "loss": 0.3141785264015198,
+          "optimizer_updates": 434
+        },
+        {
+          "step": 240,
+          "horizon": 4,
+          "loss": 0.33549484610557556,
+          "optimizer_updates": 914
+        },
+        {
+          "step": 360,
+          "horizon": 1,
+          "loss": 0.22131924331188202,
+          "optimizer_updates": 1326
+        },
+        {
+          "step": 480,
+          "horizon": 64,
+          "loss": 0.20636604726314545,
+          "optimizer_updates": 1688
+        },
+        {
+          "step": 600,
+          "horizon": 16,
+          "loss": 0.12883394956588745,
+          "optimizer_updates": 2126
+        }
+      ],
+      "horizons": {
+        "1": {
+          "mse": 0.07314356416463852,
+          "updated_slot_mse": 0.09903012216091156,
+          "untouched_drift_mse": 0.008901025168597698,
+          "shuffled_mse": 0.5705957412719727,
+          "blank_mse": 1.7563365697860718,
+          "skip_all_rewrites_mse": 0.18212346732616425
+        },
+        "4": {
+          "mse": 0.10234185308218002,
+          "updated_slot_mse": 0.0971299260854721,
+          "untouched_drift_mse": 0.008556392975151539,
+          "shuffled_mse": 0.5425119400024414,
+          "blank_mse": 1.706365942955017,
+          "skip_all_rewrites_mse": 0.3955288529396057
+        },
+        "16": {
+          "mse": 0.134306401014328,
+          "updated_slot_mse": 0.10632258653640747,
+          "untouched_drift_mse": 0.008530086779501289,
+          "shuffled_mse": 0.5387586951255798,
+          "blank_mse": 1.6874771118164062,
+          "skip_all_rewrites_mse": 0.5923290252685547
+        },
+        "64": {
+          "mse": 0.13976898789405823,
+          "updated_slot_mse": 0.1037224680185318,
+          "untouched_drift_mse": 0.00875885211280547,
+          "shuffled_mse": 0.5447574853897095,
+          "blank_mse": 1.7574994564056396,
+          "skip_all_rewrites_mse": 0.6185490489006042
+        }
+      },
+      "state_bytes": 48,
+      "parameter_bytes": 103052,
+      "parameter_count": 25763,
+      "limits": "Horizon-matched ORIGINAL global writer, not local delta. Truncated BPTT and multiple optimizer steps per episode; original 600-step baseline not compute-matched."
+    },
+    {
+      "seed": 41,
+      "kind": "vector",
+      "train_seconds": 42.323420000000624,
+      "eval_seconds": 0.2412767999994685,
+      "training_updates": 2126,
+      "training_trace": [
+        {
+          "step": 1,
+          "horizon": 4,
+          "loss": 0.33104100823402405,
+          "optimizer_updates": 1
+        },
+        {
+          "step": 120,
+          "horizon": 16,
+          "loss": 0.3367348909378052,
+          "optimizer_updates": 434
+        },
+        {
+          "step": 240,
+          "horizon": 4,
+          "loss": 0.3365452289581299,
+          "optimizer_updates": 914
+        },
+        {
+          "step": 360,
+          "horizon": 1,
+          "loss": 0.2864258885383606,
+          "optimizer_updates": 1326
+        },
+        {
+          "step": 480,
+          "horizon": 64,
+          "loss": 0.29855334758758545,
+          "optimizer_updates": 1688
+        },
+        {
+          "step": 600,
+          "horizon": 16,
+          "loss": 0.28671249747276306,
+          "optimizer_updates": 2126
+        }
+      ],
+      "horizons": {
+        "1": {
+          "mse": 0.26428231596946716,
+          "updated_slot_mse": 0.21959921717643738,
+          "untouched_drift_mse": 0.023412711918354034,
+          "shuffled_mse": 0.381461501121521,
+          "blank_mse": 0.42277035117149353,
+          "skip_all_rewrites_mse": 0.2806357145309448
+        },
+        "4": {
+          "mse": 0.27503353357315063,
+          "updated_slot_mse": 0.22421470284461975,
+          "untouched_drift_mse": 0.024162749759852886,
+          "shuffled_mse": 0.36229634284973145,
+          "blank_mse": 0.413168728351593,
+          "skip_all_rewrites_mse": 0.3369201421737671
+        },
+        "16": {
+          "mse": 0.30067893862724304,
+          "updated_slot_mse": 0.22522878646850586,
+          "untouched_drift_mse": 0.02285433153156191,
+          "shuffled_mse": 0.36512333154678345,
+          "blank_mse": 0.40500783920288086,
+          "skip_all_rewrites_mse": 0.40237993001937866
+        },
+        "64": {
+          "mse": 0.2962149977684021,
+          "updated_slot_mse": 0.22473907470703125,
+          "untouched_drift_mse": 0.02036108955508098,
+          "shuffled_mse": 0.3607383668422699,
+          "blank_mse": 0.4130953252315521,
+          "skip_all_rewrites_mse": 0.4133365750312805
+        }
+      },
+      "state_bytes": 48,
+      "parameter_bytes": 103052,
+      "parameter_count": 25763,
+      "limits": "Horizon-matched ORIGINAL global writer, not local delta. Truncated BPTT and multiple optimizer steps per episode; original 600-step baseline not compute-matched."
+    },
+    {
+      "seed": 97,
+      "kind": "phase",
+      "train_seconds": 54.7756358000006,
+      "eval_seconds": 0.36209470000176225,
+      "training_updates": 2120,
+      "training_trace": [
+        {
+          "step": 1,
+          "horizon": 4,
+          "loss": 0.3373626470565796,
+          "optimizer_updates": 1
+        },
+        {
+          "step": 120,
+          "horizon": 1,
+          "loss": 0.342968225479126,
+          "optimizer_updates": 420
+        },
+        {
+          "step": 240,
+          "horizon": 1,
+          "loss": 0.28715890645980835,
+          "optimizer_updates": 898
+        },
+        {
+          "step": 360,
+          "horizon": 4,
+          "loss": 0.24169830977916718,
+          "optimizer_updates": 1268
+        },
+        {
+          "step": 480,
+          "horizon": 4,
+          "loss": 0.13646063208580017,
+          "optimizer_updates": 1722
+        },
+        {
+          "step": 600,
+          "horizon": 64,
+          "loss": 0.12178116291761398,
+          "optimizer_updates": 2120
+        }
+      ],
+      "horizons": {
+        "1": {
+          "mse": 0.1621485948562622,
+          "updated_slot_mse": 0.1514652818441391,
+          "untouched_drift_mse": 0.007138832472264767,
+          "shuffled_mse": 0.5977354049682617,
+          "blank_mse": 0.8223263621330261,
+          "skip_all_rewrites_mse": 0.25981616973876953
+        },
+        "4": {
+          "mse": 0.13892847299575806,
+          "updated_slot_mse": 0.10951714962720871,
+          "untouched_drift_mse": 0.005877542425878346,
+          "shuffled_mse": 0.6132449507713318,
+          "blank_mse": 0.8141566514968872,
+          "skip_all_rewrites_mse": 0.46260929107666016
+        },
+        "16": {
+          "mse": 0.11027740687131882,
+          "updated_slot_mse": 0.10908134281635284,
+          "untouched_drift_mse": 0.00586829028907232,
+          "shuffled_mse": 0.5195973515510559,
+          "blank_mse": 0.8330597281455994,
+          "skip_all_rewrites_mse": 0.5715806484222412
+        },
+        "64": {
+          "mse": 0.10790491104125977,
+          "updated_slot_mse": 0.0918625220656395,
+          "untouched_drift_mse": 0.00569043742143549,
+          "shuffled_mse": 0.5498990416526794,
+          "blank_mse": 0.8428918123245239,
+          "skip_all_rewrites_mse": 0.5949599146842957
+        }
+      },
+      "state_bytes": 48,
+      "parameter_bytes": 103052,
+      "parameter_count": 25763,
+      "limits": "Horizon-matched ORIGINAL global writer, not local delta. Truncated BPTT and multiple optimizer steps per episode; original 600-step baseline not compute-matched."
+    },
+    {
+      "seed": 97,
+      "kind": "signed",
+      "train_seconds": 55.82991000000038,
+      "eval_seconds": 0.39163579999876674,
+      "training_updates": 2120,
+      "training_trace": [
+        {
+          "step": 1,
+          "horizon": 4,
+          "loss": 0.33432134985923767,
+          "optimizer_updates": 1
+        },
+        {
+          "step": 120,
+          "horizon": 1,
+          "loss": 0.309852659702301,
+          "optimizer_updates": 420
+        },
+        {
+          "step": 240,
+          "horizon": 1,
+          "loss": 0.29807257652282715,
+          "optimizer_updates": 898
+        },
+        {
+          "step": 360,
+          "horizon": 4,
+          "loss": 0.2691742181777954,
+          "optimizer_updates": 1268
+        },
+        {
+          "step": 480,
+          "horizon": 4,
+          "loss": 0.16745547950267792,
+          "optimizer_updates": 1722
+        },
+        {
+          "step": 600,
+          "horizon": 64,
+          "loss": 0.11515049636363983,
+          "optimizer_updates": 2120
+        }
+      ],
+      "horizons": {
+        "1": {
+          "mse": 0.09056983888149261,
+          "updated_slot_mse": 0.09817050397396088,
+          "untouched_drift_mse": 0.009440009482204914,
+          "shuffled_mse": 0.579437255859375,
+          "blank_mse": 1.742897868156433,
+          "skip_all_rewrites_mse": 0.20705513656139374
+        },
+        "4": {
+          "mse": 0.11001428216695786,
+          "updated_slot_mse": 0.09261675924062729,
+          "untouched_drift_mse": 0.008854461601004004,
+          "shuffled_mse": 0.614193856716156,
+          "blank_mse": 1.7476441860198975,
+          "skip_all_rewrites_mse": 0.42704319953918457
+        },
+        "16": {
+          "mse": 0.12945866584777832,
+          "updated_slot_mse": 0.10688243806362152,
+          "untouched_drift_mse": 0.009035782015416771,
+          "shuffled_mse": 0.531054675579071,
+          "blank_mse": 1.6806682348251343,
+          "skip_all_rewrites_mse": 0.561372697353363
+        },
+        "64": {
+          "mse": 0.1423671543598175,
+          "updated_slot_mse": 0.1055915579199791,
+          "untouched_drift_mse": 0.009270432099583559,
+          "shuffled_mse": 0.5686795711517334,
+          "blank_mse": 1.7154725790023804,
+          "skip_all_rewrites_mse": 0.5900732278823853
+        }
+      },
+      "state_bytes": 48,
+      "parameter_bytes": 103052,
+      "parameter_count": 25763,
+      "limits": "Horizon-matched ORIGINAL global writer, not local delta. Truncated BPTT and multiple optimizer steps per episode; original 600-step baseline not compute-matched."
+    },
+    {
+      "seed": 97,
+      "kind": "vector",
+      "train_seconds": 43.732150299998466,
+      "eval_seconds": 0.22241329999815207,
+      "training_updates": 2120,
+      "training_trace": [
+        {
+          "step": 1,
+          "horizon": 4,
+          "loss": 0.3424718379974365,
+          "optimizer_updates": 1
+        },
+        {
+          "step": 120,
+          "horizon": 1,
+          "loss": 0.3510201871395111,
+          "optimizer_updates": 420
+        },
+        {
+          "step": 240,
+          "horizon": 1,
+          "loss": 0.2970106899738312,
+          "optimizer_updates": 898
+        },
+        {
+          "step": 360,
+          "horizon": 4,
+          "loss": 0.300303190946579,
+          "optimizer_updates": 1268
+        },
+        {
+          "step": 480,
+          "horizon": 4,
+          "loss": 0.29461485147476196,
+          "optimizer_updates": 1722
+        },
+        {
+          "step": 600,
+          "horizon": 64,
+          "loss": 0.2944154739379883,
+          "optimizer_updates": 2120
+        }
+      ],
+      "horizons": {
+        "1": {
+          "mse": 0.27534520626068115,
+          "updated_slot_mse": 0.2371758669614792,
+          "untouched_drift_mse": 0.019627947360277176,
+          "shuffled_mse": 0.3872653841972351,
+          "blank_mse": 0.4264950454235077,
+          "skip_all_rewrites_mse": 0.2929301857948303
+        },
+        "4": {
+          "mse": 0.2915342450141907,
+          "updated_slot_mse": 0.2236849069595337,
+          "untouched_drift_mse": 0.019032521173357964,
+          "shuffled_mse": 0.39495378732681274,
+          "blank_mse": 0.4174886643886566,
+          "skip_all_rewrites_mse": 0.34936508536338806
+        },
+        "16": {
+          "mse": 0.28642737865448,
+          "updated_slot_mse": 0.22890150547027588,
+          "untouched_drift_mse": 0.018569998792372644,
+          "shuffled_mse": 0.3508434295654297,
+          "blank_mse": 0.393155038356781,
+          "skip_all_rewrites_mse": 0.3797721862792969
+        },
+        "64": {
+          "mse": 0.2953185439109802,
+          "updated_slot_mse": 0.22577588260173798,
+          "untouched_drift_mse": 0.01887482777237892,
+          "shuffled_mse": 0.3668782114982605,
+          "blank_mse": 0.3995400667190552,
+          "skip_all_rewrites_mse": 0.38490068912506104
+        }
+      },
+      "state_bytes": 48,
+      "parameter_bytes": 103052,
+      "parameter_count": 25763,
+      "limits": "Horizon-matched ORIGINAL global writer, not local delta. Truncated BPTT and multiple optimizer steps per episode; original 600-step baseline not compute-matched."
+    },
+    {
+      "seed": 127,
+      "kind": "phase",
+      "train_seconds": 58.22667430000001,
+      "eval_seconds": 0.388827399998263,
+      "training_updates": 2190,
+      "training_trace": [
+        {
+          "step": 1,
+          "horizon": 1,
+          "loss": 0.3228123188018799,
+          "optimizer_updates": 1
+        },
+        {
+          "step": 120,
+          "horizon": 1,
+          "loss": 0.2913949191570282,
+          "optimizer_updates": 412
+        },
+        {
+          "step": 240,
+          "horizon": 4,
+          "loss": 0.27590638399124146,
+          "optimizer_updates": 884
+        },
+        {
+          "step": 360,
+          "horizon": 1,
+          "loss": 0.2080422043800354,
+          "optimizer_updates": 1290
+        },
+        {
+          "step": 480,
+          "horizon": 4,
+          "loss": 0.15630245208740234,
+          "optimizer_updates": 1730
+        },
+        {
+          "step": 600,
+          "horizon": 4,
+          "loss": 0.06397344172000885,
+          "optimizer_updates": 2190
+        }
+      ],
+      "horizons": {
+        "1": {
+          "mse": 0.06560672074556351,
+          "updated_slot_mse": 0.07714381814002991,
+          "untouched_drift_mse": 0.0071959663182497025,
+          "shuffled_mse": 0.5679196119308472,
+          "blank_mse": 0.9028918147087097,
+          "skip_all_rewrites_mse": 0.19753170013427734
+        },
+        "4": {
+          "mse": 0.0724366307258606,
+          "updated_slot_mse": 0.06037410348653793,
+          "untouched_drift_mse": 0.008652929915115237,
+          "shuffled_mse": 0.57660973072052,
+          "blank_mse": 0.8918652534484863,
+          "skip_all_rewrites_mse": 0.40061044692993164
+        },
+        "16": {
+          "mse": 0.08060619235038757,
+          "updated_slot_mse": 0.07224227488040924,
+          "untouched_drift_mse": 0.009239637962309644,
+          "shuffled_mse": 0.5471843481063843,
+          "blank_mse": 0.9128472208976746,
+          "skip_all_rewrites_mse": 0.5613629817962646
+        },
+        "64": {
+          "mse": 0.07508112490177155,
+          "updated_slot_mse": 0.07347380369901657,
+          "untouched_drift_mse": 0.007972183942911215,
+          "shuffled_mse": 0.641024112701416,
+          "blank_mse": 0.8683571815490723,
+          "skip_all_rewrites_mse": 0.6002802848815918
+        }
+      },
+      "state_bytes": 48,
+      "parameter_bytes": 103052,
+      "parameter_count": 25763,
+      "limits": "Horizon-matched ORIGINAL global writer, not local delta. Truncated BPTT and multiple optimizer steps per episode; original 600-step baseline not compute-matched."
+    },
+    {
+      "seed": 127,
+      "kind": "signed",
+      "train_seconds": 56.58022599999822,
+      "eval_seconds": 0.3084043999988353,
+      "training_updates": 2190,
+      "training_trace": [
+        {
+          "step": 1,
+          "horizon": 1,
+          "loss": 0.3227444887161255,
+          "optimizer_updates": 1
+        },
+        {
+          "step": 120,
+          "horizon": 1,
+          "loss": 0.2688790261745453,
+          "optimizer_updates": 412
+        },
+        {
+          "step": 240,
+          "horizon": 4,
+          "loss": 0.2536686360836029,
+          "optimizer_updates": 884
+        },
+        {
+          "step": 360,
+          "horizon": 1,
+          "loss": 0.17784175276756287,
+          "optimizer_updates": 1290
+        },
+        {
+          "step": 480,
+          "horizon": 4,
+          "loss": 0.13359162211418152,
+          "optimizer_updates": 1730
+        },
+        {
+          "step": 600,
+          "horizon": 4,
+          "loss": 0.0827469676733017,
+          "optimizer_updates": 2190
+        }
+      ],
+      "horizons": {
+        "1": {
+          "mse": 0.06867773830890656,
+          "updated_slot_mse": 0.06761221587657928,
+          "untouched_drift_mse": 0.005238913465291262,
+          "shuffled_mse": 0.5517684817314148,
+          "blank_mse": 1.4892947673797607,
+          "skip_all_rewrites_mse": 0.18868672847747803
+        },
+        "4": {
+          "mse": 0.07398927956819534,
+          "updated_slot_mse": 0.06369464099407196,
+          "untouched_drift_mse": 0.004701909492723644,
+          "shuffled_mse": 0.5447252988815308,
+          "blank_mse": 1.5019464492797852,
+          "skip_all_rewrites_mse": 0.37163639068603516
+        },
+        "16": {
+          "mse": 0.09352093935012817,
+          "updated_slot_mse": 0.0854133889079094,
+          "untouched_drift_mse": 0.00501310991239734,
+          "shuffled_mse": 0.5463706851005554,
+          "blank_mse": 1.4915404319763184,
+          "skip_all_rewrites_mse": 0.5303845405578613
+        },
+        "64": {
+          "mse": 0.10732825100421906,
+          "updated_slot_mse": 0.0878390520811081,
+          "untouched_drift_mse": 0.005976371990982443,
+          "shuffled_mse": 0.6149965524673462,
+          "blank_mse": 1.5011314153671265,
+          "skip_all_rewrites_mse": 0.551599383354187
+        }
+      },
+      "state_bytes": 48,
+      "parameter_bytes": 103052,
+      "parameter_count": 25763,
+      "limits": "Horizon-matched ORIGINAL global writer, not local delta. Truncated BPTT and multiple optimizer steps per episode; original 600-step baseline not compute-matched."
+    },
+    {
+      "seed": 127,
+      "kind": "vector",
+      "train_seconds": 42.183475999998336,
+      "eval_seconds": 0.19975549999799114,
+      "training_updates": 2190,
+      "training_trace": [
+        {
+          "step": 1,
+          "horizon": 1,
+          "loss": 0.3255801200866699,
+          "optimizer_updates": 1
+        },
+        {
+          "step": 120,
+          "horizon": 1,
+          "loss": 0.3002881109714508,
+          "optimizer_updates": 412
+        },
+        {
+          "step": 240,
+          "horizon": 4,
+          "loss": 0.2556067705154419,
+          "optimizer_updates": 884
+        },
+        {
+          "step": 360,
+          "horizon": 1,
+          "loss": 0.26889634132385254,
+          "optimizer_updates": 1290
+        },
+        {
+          "step": 480,
+          "horizon": 4,
+          "loss": 0.3099258840084076,
+          "optimizer_updates": 1730
+        },
+        {
+          "step": 600,
+          "horizon": 4,
+          "loss": 0.2914389371871948,
+          "optimizer_updates": 2190
+        }
+      ],
+      "horizons": {
+        "1": {
+          "mse": 0.2693755328655243,
+          "updated_slot_mse": 0.23102137446403503,
+          "untouched_drift_mse": 0.018191136419773102,
+          "shuffled_mse": 0.39144861698150635,
+          "blank_mse": 0.37805336713790894,
+          "skip_all_rewrites_mse": 0.2908288538455963
+        },
+        "4": {
+          "mse": 0.2887381911277771,
+          "updated_slot_mse": 0.22986821830272675,
+          "untouched_drift_mse": 0.019308241084218025,
+          "shuffled_mse": 0.37168630957603455,
+          "blank_mse": 0.3713735044002533,
+          "skip_all_rewrites_mse": 0.3414332866668701
+        },
+        "16": {
+          "mse": 0.275017112493515,
+          "updated_slot_mse": 0.21823428571224213,
+          "untouched_drift_mse": 0.020019046613015234,
+          "shuffled_mse": 0.34257763624191284,
+          "blank_mse": 0.35366091132164,
+          "skip_all_rewrites_mse": 0.3875925540924072
+        },
+        "64": {
+          "mse": 0.2881567180156708,
+          "updated_slot_mse": 0.2227492779493332,
+          "untouched_drift_mse": 0.020267707033781335,
+          "shuffled_mse": 0.3940902650356293,
+          "blank_mse": 0.3779700696468353,
+          "skip_all_rewrites_mse": 0.388354629278183
+        }
+      },
+      "state_bytes": 48,
+      "parameter_bytes": 103052,
+      "parameter_count": 25763,
+      "limits": "Horizon-matched ORIGINAL global writer, not local delta. Truncated BPTT and multiple optimizer steps per episode; original 600-step baseline not compute-matched."
+    }
+  ]
+}
